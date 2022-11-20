@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  background-color: black;
+}
+
+body {
+  background: #ffab91;
+  font-family: "Helvetica Neue", Helvetica;
+  overflow: hidden;
+}
