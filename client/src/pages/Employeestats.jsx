@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 // import { getEmployeeStatsData } from "../utils/fetchdata";
 import axios from "axios";
-import PieChart from "../components/PieChart";
+import Dougnut from "../components/Dougnut";
 
 const Employeestats = () => {
   const [data, setData] = useState([]);
@@ -17,11 +17,11 @@ const Employeestats = () => {
       withCredentials: true,
     });
     setData(Edata?.data);
-    let newValues = data?.map(function (row) {
+    let newValues = Edata.data?.map(function (row) {
       return row.Total_Orders;
     });
 
-    let newLabels = data?.map(function (row) {
+    let newLabels = Edata.data?.map(function (row) {
       return row.fname;
     });
 
@@ -109,7 +109,19 @@ const Employeestats = () => {
           alignItems: "center",
         }}
       >
-        {values?.length !== 0 && <PieChart chartData={state} />}
+        {data?.length > 0 ? (
+          <Dougnut chartData={state} />
+        ) : (
+          <h3
+            style={{
+              color: "#1e8e8e",
+              textAlign: "center",
+              paddingTop: "10px",
+            }}
+          >
+            click to view loading....
+          </h3>
+        )}
       </div>
     </div>
   );

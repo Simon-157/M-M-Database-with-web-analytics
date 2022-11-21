@@ -1,7 +1,7 @@
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 
-const PieChart = ({ chartData }) => {
+const Dougnut = ({ chartData }) => {
   return (
     <div
       styles={{
@@ -11,7 +11,7 @@ const PieChart = ({ chartData }) => {
       }}
     >
       {/* <h2 style={{ color: "#e8e8e8", textAlign: "center" }}>Pie Chart</h2> */}
-      <Pie
+      <Doughnut
         data={chartData}
         height="490px"
         width="490px"
@@ -47,4 +47,4 @@ const PieChart = ({ chartData }) => {
     </div>
   );
 };
-export default PieChart;
+export default Dougnut;

@@ -52,9 +52,17 @@ const Navbar = () => {
         <Button color="inherit">
           <NavLink
             style={{ color: "inherit", textDecoration: "none" }}
-            to="/orders"
+            to="/orders_count"
           >
             Orders
+          </NavLink>
+        </Button>
+        <Button color="inherit">
+          <NavLink
+            style={{ color: "inherit", textDecoration: "none" }}
+            to="/services"
+          >
+            Services
           </NavLink>
         </Button>
         <Button color="inherit">
@@ -68,9 +76,17 @@ const Navbar = () => {
         <Button color="inherit">
           <NavLink
             style={{ color: "inherit", textDecoration: "none" }}
-            to="/equipment"
+            to="/std_staff_prop"
           >
-            Equipment
+            CustomerProportions
+          </NavLink>
+        </Button>
+        <Button color="inherit">
+          <NavLink
+            style={{ color: "inherit", textDecoration: "none" }}
+            to="/manage_inventory"
+          >
+            Manage Inventory
           </NavLink>
         </Button>
       </Toolbar>

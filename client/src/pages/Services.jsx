@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-// import { getEmployeeStatsData } from "../utils/fetchdata";
 import axios from "axios";
-// import PieChart from "../components/PieChart";
-import { BarChart } from "../components/BarChart";
+import { HorizontalBar } from "./../components/Horizontal";
 
-const Employeestats = () => {
+const Services = () => {
   const [data, setData] = useState([]);
   const [labels, setLabels] = useState([]);
   const [values, setValues] = useState([]);
@@ -14,12 +12,12 @@ const Employeestats = () => {
   const handleClick = async () => {
     const Edata = await axios({
       method: "get",
-      url: "http://localhost:5000/service_revenue",
+      url: "http://localhost:5000/services",
       withCredentials: true,
     });
     setData(Edata?.data);
     let newValues = Edata.data?.map(function (row) {
-      return row.Revenue;
+      return row.Total_Orders;
     });
 
     let newLabels = Edata.data?.map(function (row) {
@@ -35,12 +33,11 @@ const Employeestats = () => {
   console.log(values);
 
   const state = {
-    title: "Revenue generated from each service for the month of November",
-    symbol: "$",
     labels: labels,
+
     datasets: [
       {
-        label: "Total Revenue",
+        label: "Service Count",
         backgroundColor: [
           "rgb(255, 99, 32)",
           "rgba(255, 99, 190)",
@@ -68,12 +65,13 @@ const Employeestats = () => {
         <h2
           style={{ color: "#1e8e8e", textAlign: "center", paddingTop: "10px" }}
         >
-          Total Revenue Generated from all service types done in this month 👇👇
+          Track of most used service type 👇👇
         </h2>
       </Typography>
       <div
         style={{
           width: "100%",
+
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -99,7 +97,16 @@ const Employeestats = () => {
         }}
       >
         {data.length > 0 ? (
-          <BarChart chartData={state} />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+              height: "500px",
+            }}
+          >
+            <HorizontalBar chartData={state} />
+          </div>
         ) : (
           <h3
             style={{
@@ -116,4 +123,4 @@ const Employeestats = () => {
   );
 };
 
-export default Employeestats;
+export default Services;

@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 // import { getEmployeeStatsData } from "../utils/fetchdata";
 import axios from "axios";
-// import PieChart from "../components/PieChart";
-import { BarChart } from "../components/BarChart";
+import PieChart from "./../components/PieChart";
 
-const Employeestats = () => {
+const SubscriptionStat = () => {
   const [data, setData] = useState([]);
   const [labels, setLabels] = useState([]);
   const [values, setValues] = useState([]);
@@ -14,16 +13,16 @@ const Employeestats = () => {
   const handleClick = async () => {
     const Edata = await axios({
       method: "get",
-      url: "http://localhost:5000/service_revenue",
+      url: "http://localhost:5000/subscription",
       withCredentials: true,
     });
     setData(Edata?.data);
     let newValues = Edata.data?.map(function (row) {
-      return row.Revenue;
+      return row.Count;
     });
 
     let newLabels = Edata.data?.map(function (row) {
-      return row.service_type;
+      return row.subscription_type;
     });
 
     setLabels(newLabels);
@@ -35,12 +34,10 @@ const Employeestats = () => {
   console.log(values);
 
   const state = {
-    title: "Revenue generated from each service for the month of November",
-    symbol: "$",
     labels: labels,
     datasets: [
       {
-        label: "Total Revenue",
+        label: "Employee Activeness",
         backgroundColor: [
           "rgb(255, 99, 32)",
           "rgba(255, 99, 190)",
@@ -53,14 +50,17 @@ const Employeestats = () => {
         ],
         borderColor: "rgba(255, 99, 132, 0.2)",
         weight: 5,
-        borderWidth: 4,
-        barThickness: 65,
+        borderWidth: 2,
+        borderJoinStyle: "miter",
+        animation: { animateScale: true },
         data: values,
       },
     ],
   };
 
-  // useEffect(() => {}, [setData, data, handleClick]);
+  useEffect(() => {
+    return () => {};
+  }, [setData]);
 
   return (
     <div>
@@ -68,7 +68,7 @@ const Employeestats = () => {
         <h2
           style={{ color: "#1e8e8e", textAlign: "center", paddingTop: "10px" }}
         >
-          Total Revenue Generated from all service types done in this month 👇👇
+          Employee details and the amount of services done in this month 👇👇
         </h2>
       </Typography>
       <div
@@ -79,16 +79,27 @@ const Employeestats = () => {
           alignItems: "center",
         }}
       >
-        {/* {data ? ( */}
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => {
-            handleClick();
-          }}
-        >
-          View
-        </Button>
+        {data ? (
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              handleClick();
+            }}
+          >
+            View
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              handleClick();
+            }}
+          >
+            Hide
+          </Button>
+        )}
       </div>
       <div
         style={{
@@ -98,8 +109,8 @@ const Employeestats = () => {
           alignItems: "center",
         }}
       >
-        {data.length > 0 ? (
-          <BarChart chartData={state} />
+        {data?.length > 0 ? (
+          <PieChart chartData={state} />
         ) : (
           <h3
             style={{
@@ -116,4 +127,4 @@ const Employeestats = () => {
   );
 };
 
-export default Employeestats;
+export default SubscriptionStat;
