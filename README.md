@@ -1,8 +1,54 @@
-# M-M-Database-with-web-analytics
+# Ashesi Laundry Service
 
-# M-M-database-design-and-web-analytics
-## Bief
-This project contains the story presented by the M&M Laundry company, their operations and services.
-Through design techniques I have deducted the functional specifications for the database. 
-It also involves the Extended Entity Relational Diagram, the multiplicities of the entities, participation of each entity in a relationship. 
-The logical model for the schema is also included. Both the DDL script and the manipulation scripts are in the sql file. And finally  an express server fro API endpoints to serve a react client
+Database Management System for M&M Laundry in Ashesi Univeristy
+
+## Installation
+
+Once in the project folder
+cd into the client and run
+
+```bash
+npm install
+```
+
+Again cd into the server folder and run
+
+```bash
+npm install
+```
+
+Once done with all installations, run the following in the terminal while in client directory to start the frontend/client
+
+```bash
+npm start
+```
+
+Once done with all server side installations, run the following in the terminal while in server directory
+
+```bash
+nodemon server
+```
+
+## LIBRARIES FOR CLIENT SIDE
+
+- React (components)
+- Material UI Core (for styling)
+- Axios (fetch)
+
+## LIBRARIES FOR SERVER SIDE
+
+- Express
+- mysql
+- cors
+- dotenv
+- bodyparser
+
+## NB
+
+- The client runs on localhost:3000
+- And the server runs on localhost:5000
+- If the installation fails for npm install, you can force install the libraries above with
+
+```bash
+npm --force install
+```
