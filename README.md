@@ -52,12 +52,3 @@ nodemon server
 ```bash
 npm --force install
 ```
-## NB
-
-- The client runs on localhost:3000
-- And the server runs on localhost:5000
-- If the installation fails for npm install, you can force install the libraries above with
-
-```bash
-npm --force install
-```
